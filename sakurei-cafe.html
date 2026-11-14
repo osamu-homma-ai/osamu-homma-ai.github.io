@@ -13,19 +13,19 @@
     :root {
       --bg:#f7f1e8; --paper:#fffdf9; --ink:#2f241c; --muted:#7a6858; --brown:#4a3326; --deep:#2a1d15;
       --cream:#fff4e3; --gold:#c89b5e; --leaf:#6b8f5a; --line:#e7dccb; --ov:20,13,8;
-      --accent:#c8873a; --wash:transparent;
+      --accent:#c8873a;
       --mincho:"Shippori Mincho","Yu Mincho","YuMincho","Hiragino Mincho ProN",serif;
     }
     /* 色のちがい（上の帯のボタンで切りかえる）。印刷しても差がわかるよう、はっきりした色にしている */
     :root[data-theme="green"] {
       --bg:#e2efd9; --paper:#fbfef8; --ink:#17301f; --muted:#4f6b56; --brown:#1f6b3d; --deep:#12391f;
       --cream:#effaea; --gold:#9fd27f; --leaf:#2f8f50; --line:#c9dfbf; --ov:12,52,26;
-      --accent:#2f9a55; --wash:rgba(30,140,70,.5);
+      --accent:#2f9a55;
     }
     :root[data-theme="pink"] {
       --bg:#fde3ea; --paper:#fffafb; --ink:#3d1f29; --muted:#8a5a68; --brown:#c03d66; --deep:#5c1a31;
       --cream:#fff0f4; --gold:#ffb3c7; --leaf:#d9577f; --line:#f6c9d6; --ov:110,25,55;
-      --accent:#e0507c; --wash:rgba(230,80,130,.5);
+      --accent:#e0507c;
     }
     body, .card, .news li, table, .map, footer, .bar { transition:background-color .4s, color .4s, border-color .4s; }
     .themes { display:flex; justify-content:center; align-items:center; gap:6px; flex-wrap:wrap; margin-top:5px; }
@@ -138,9 +138,16 @@
     @media (prefers-reduced-motion: reduce) { .hero img { animation:none; transform:none; } .card .ph img { transition:none; } }
     /* ---- 色のちがいを、はっきり見せるための設定 ---- */
     .hero img { z-index:0; }
-    .hero::before { content:""; position:absolute; inset:0; background:var(--wash); mix-blend-mode:color; z-index:1; pointer-events:none; }
+    /* 背景の写真は、色ごとに季節の木に切りかえる（茶＝紅葉、緑＝新緑、桜色＝桜） */
+    .hero img.bg { opacity:0; transition:opacity .7s; }
+    .hero img.koyo { opacity:1; }
+    :root[data-theme="green"] .hero img.koyo, :root[data-theme="pink"] .hero img.koyo { opacity:0; }
+    :root[data-theme="green"] .hero img.shinryoku { opacity:1; }
+    :root[data-theme="pink"] .hero img.sakura { opacity:1; }
     .hero::after { z-index:2; }
     .hero .in { z-index:3; }
+    .hero .en, .hero .copy { text-shadow:0 1px 8px rgba(0,0,0,.6); }
+    .hero .en { color:#fff; opacity:.9; }
     .hero .btn:not(.line) { background:var(--accent); color:#fff; }
     .label { color:var(--accent); font-weight:bold; }
     h2 { color:var(--brown); }
@@ -164,7 +171,9 @@
   </div>
 
   <header class="hero">
-    <img src="img/hero.jpg" alt="大きな窓から木もれ日の差す、落ちついた喫茶店の店内" width="1600" height="900" fetchpriority="high">
+    <img class="bg koyo" src="img/hero_koyo.jpg" alt="日の差す、紅葉したもみじの木" width="1600" height="900" fetchpriority="high">
+    <img class="bg shinryoku" src="img/hero_shinryoku.jpg" alt="葉の間から日が差しこむ、新緑のもみじ" width="1600" height="900">
+    <img class="bg sakura" src="img/hero_sakura.jpg" alt="枝いっぱいに咲いた桜" width="1600" height="900">
     <div class="in">
       <p class="en">KOMOREBI COFFEE</p>
       <h1>こもれび珈琲</h1>
