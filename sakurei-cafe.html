@@ -101,6 +101,12 @@
     .bar { position:fixed; left:0; right:0; bottom:0; z-index:10; display:flex; background:rgba(42,29,21,.96); backdrop-filter:blur(6px); }
     .bar span { flex:1; text-align:center; color:var(--cream); padding:14px 6px; font-size:.9rem; font-weight:bold; border-left:1px solid rgba(255,244,227,.15); }
     .bar span:first-child { border-left:0; }
+    .bar button { flex:1; background:none; border:0; border-left:1px solid rgba(255,244,227,.15); color:var(--cream); padding:14px 6px; font:inherit; font-size:.9rem; font-weight:bold; cursor:pointer; }
+    .bar button:first-child { border-left:0; }
+    .bar button:active, button.btn:active { opacity:.7; }
+    button.btn { font:inherit; font-size:.95rem; font-weight:bold; cursor:pointer; border:0; }
+    .toast { position:fixed; left:50%; bottom:88px; transform:translate(-50%, 10px); width:max-content; max-width:calc(100% - 32px); background:rgba(42,29,21,.96); color:var(--cream); padding:12px 18px; border-radius:12px; font-size:.88rem; line-height:1.6; text-align:center; box-shadow:0 8px 24px rgba(0,0,0,.25); opacity:0; transition:opacity .25s, transform .25s; pointer-events:none; z-index:20; }
+    .toast.show { opacity:1; transform:translate(-50%, 0); }
     .bar small { display:block; font-weight:normal; font-size:.68rem; opacity:.7; }
 
     @media (max-width: 720px) {
@@ -194,8 +200,8 @@
         </div>
       </div>
       <div class="btns" style="margin-top:16px">
-        <span class="btn dark">電話する（作例のため押せません）</span>
-        <span class="btn ghost">地図アプリで開く（作例）</span>
+        <button type="button" class="btn dark demo-tap" data-msg="本物のお店のページなら、ここを押すと電話がかかります。（作例なので、つながりません）">電話する</button>
+        <button type="button" class="btn ghost demo-tap" data-msg="本物のお店のページなら、ここを押すと地図アプリでお店の場所が開きます。（作例なので、開きません）">地図アプリで開く</button>
       </div>
     </section>
 
@@ -208,9 +214,24 @@
   </footer>
 
   <nav class="bar" aria-label="お店へのご連絡（作例）">
-    <span>電話<small>作例のため押せません</small></span>
-    <span>地図<small>作例</small></span>
+    <button type="button" class="demo-tap" data-msg="本物のお店のページなら、ここを押すと電話がかかります。（作例なので、つながりません）">電話<small>お店に電話</small></button>
+    <button type="button" class="demo-tap" data-msg="本物のお店のページなら、ここを押すと地図アプリでお店の場所が開きます。（作例なので、開きません）">地図<small>場所を見る</small></button>
     <a href="#menu" style="flex:1;text-decoration:none"><span style="display:block;border-left:1px solid rgba(255,244,227,.15)">メニュー<small>おすすめを見る</small></span></a>
   </nav>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script>
+    // 作例なので、電話・地図のボタンは「本物ならこう動く」という説明を出すだけにする
+    (function () {
+      var toast = document.getElementById("toast"), timer;
+      document.querySelectorAll(".demo-tap").forEach(function (b) {
+        b.addEventListener("click", function () {
+          toast.textContent = b.getAttribute("data-msg");
+          toast.classList.add("show");
+          clearTimeout(timer);
+          timer = setTimeout(function () { toast.classList.remove("show"); }, 3200);
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
