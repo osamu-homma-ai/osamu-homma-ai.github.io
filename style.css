@@ -107,8 +107,11 @@ tr:last-child th, tr:last-child td { border-bottom: 0; }
 .faq dd { margin: 4px 0 0; color: var(--muted); }
 
 .profile { display: flex; gap: 18px; align-items: flex-start; }
-.avatar { flex: 0 0 72px; height: 72px; border-radius: 50%; background: var(--soft); color: var(--accent-dark); display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.4rem; }
+.avatar { flex: 0 0 72px; width: 72px; height: 72px; border-radius: 50%; background: var(--soft); color: var(--accent-dark); display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.4rem; }
 .profile p { margin: 0 0 8px; }
+.career { margin: 0 0 10px; padding: 0; list-style: none; }
+.career li { position: relative; padding-left: 18px; margin-bottom: 4px; line-height: 1.7; }
+.career li::before { content: ""; position: absolute; left: 2px; top: 0.7em; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
 
 .contact { list-style: none; padding: 0; margin: 0 0 18px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); }
 .contact li { display: flex; gap: 16px; padding: 14px 18px; border-bottom: 1px solid var(--line); align-items: center; flex-wrap: wrap; }
