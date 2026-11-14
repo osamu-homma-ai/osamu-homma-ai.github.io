@@ -12,9 +12,24 @@
   <style>
     :root {
       --bg:#f7f1e8; --paper:#fffdf9; --ink:#2f241c; --muted:#7a6858; --brown:#4a3326; --deep:#2a1d15;
-      --cream:#fff4e3; --gold:#c89b5e; --leaf:#6b8f5a; --line:#e7dccb;
+      --cream:#fff4e3; --gold:#c89b5e; --leaf:#6b8f5a; --line:#e7dccb; --ov:20,13,8;
       --mincho:"Shippori Mincho","Yu Mincho","YuMincho","Hiragino Mincho ProN",serif;
     }
+    /* 色のちがい（上の帯のボタンで切りかえる） */
+    :root[data-theme="green"] {
+      --bg:#eef3ec; --paper:#fbfdf9; --ink:#1f2a21; --muted:#5d6d5f; --brown:#2f5138; --deep:#1a2b1f;
+      --cream:#f2f8ee; --gold:#b5a35a; --leaf:#c27a3a; --line:#d6e2d3; --ov:10,24,14;
+    }
+    :root[data-theme="pink"] {
+      --bg:#fbf1f1; --paper:#fffafa; --ink:#3a2a2d; --muted:#8a6f74; --brown:#a8566a; --deep:#4a2a33;
+      --cream:#fff3f5; --gold:#e3a3b0; --leaf:#8fae7a; --line:#f0dade; --ov:60,20,32;
+    }
+    body, .card, .news li, table, .map, footer, .bar { transition:background-color .4s, color .4s, border-color .4s; }
+    .themes { display:flex; justify-content:center; align-items:center; gap:6px; flex-wrap:wrap; margin-top:5px; }
+    .themes > span { font-size:.78rem; opacity:.9; margin-right:2px; }
+    .themes button { display:inline-flex; align-items:center; gap:5px; background:rgba(255,255,255,.18); color:#fff; border:1.5px solid rgba(255,255,255,.55); border-radius:999px; padding:2px 10px 2px 4px; font:inherit; font-size:.78rem; font-weight:bold; cursor:pointer; }
+    .themes button i { width:14px; height:14px; border-radius:50%; border:1.5px solid #fff; display:inline-block; }
+    .themes button[aria-pressed="true"] { background:#fff; color:#c9671f; border-color:#fff; }
     * { box-sizing:border-box; }
     html { scroll-behavior:smooth; }
     body { margin:0; background:var(--bg); color:var(--ink); font-family:"Yu Gothic UI","Yu Gothic","Hiragino Sans",sans-serif; line-height:1.9; padding-bottom:72px; }
@@ -29,7 +44,7 @@
     .hero { position:relative; min-height:min(78vh, 720px); display:flex; align-items:flex-end; color:var(--cream); overflow:hidden; }
     .hero img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 45%; transform:scale(1.04); animation:slow 18s ease-out forwards; }
     @keyframes slow { to { transform:scale(1); } }
-    .hero::after { content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(20,13,8,.15) 0%, rgba(20,13,8,.25) 45%, rgba(20,13,8,.82) 100%); }
+    .hero::after { content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(var(--ov),.15) 0%, rgba(var(--ov),.25) 45%, rgba(var(--ov),.82) 100%); }
     .hero .in { position:relative; z-index:1; width:100%; max-width:960px; margin:0 auto; padding:0 24px 56px; }
     .en { letter-spacing:.38em; font-size:.78rem; color:var(--gold); margin:0; }
     .hero h1 { font-family:var(--mincho); font-weight:700; font-size:clamp(2.4rem, 8vw, 4.2rem); line-height:1.2; margin:8px 0 12px; letter-spacing:.12em; text-shadow:0 2px 18px rgba(0,0,0,.35); }
@@ -98,14 +113,14 @@
     footer .logo { font-family:var(--mincho); color:var(--cream); font-size:1.3rem; letter-spacing:.12em; margin-bottom:6px; }
 
     /* スマホの下に出るボタン */
-    .bar { position:fixed; left:0; right:0; bottom:0; z-index:10; display:flex; background:rgba(42,29,21,.96); backdrop-filter:blur(6px); }
+    .bar { position:fixed; left:0; right:0; bottom:0; z-index:10; display:flex; background:var(--deep); backdrop-filter:blur(6px); }
     .bar span { flex:1; text-align:center; color:var(--cream); padding:14px 6px; font-size:.9rem; font-weight:bold; border-left:1px solid rgba(255,244,227,.15); }
     .bar span:first-child { border-left:0; }
     .bar button { flex:1; background:none; border:0; border-left:1px solid rgba(255,244,227,.15); color:var(--cream); padding:14px 6px; font:inherit; font-size:.9rem; font-weight:bold; cursor:pointer; }
     .bar button:first-child { border-left:0; }
     .bar button:active, button.btn:active { opacity:.7; }
     button.btn { font:inherit; font-size:.95rem; font-weight:bold; cursor:pointer; border:0; }
-    .toast { position:fixed; left:50%; bottom:88px; transform:translate(-50%, 10px); width:max-content; max-width:calc(100% - 32px); background:rgba(42,29,21,.96); color:var(--cream); padding:12px 18px; border-radius:12px; font-size:.88rem; line-height:1.6; text-align:center; box-shadow:0 8px 24px rgba(0,0,0,.25); opacity:0; transition:opacity .25s, transform .25s; pointer-events:none; z-index:20; }
+    .toast { position:fixed; left:50%; bottom:88px; transform:translate(-50%, 10px); width:max-content; max-width:calc(100% - 32px); background:var(--deep); color:var(--cream); padding:12px 18px; border-radius:12px; font-size:.88rem; line-height:1.6; text-align:center; box-shadow:0 8px 24px rgba(0,0,0,.25); opacity:0; transition:opacity .25s, transform .25s; pointer-events:none; z-index:20; }
     .toast.show { opacity:1; transform:translate(-50%, 0); }
     .bar small { display:block; font-weight:normal; font-size:.68rem; opacity:.7; }
 
@@ -121,7 +136,14 @@
   </style>
 </head>
 <body>
-  <div class="demo">これは「ほんまのAIサポート」の作例です（架空のお店）。<br><a href="index.html">ほんまのAIサポートにもどる</a></div>
+  <div class="demo">これは「ほんまのAIサポート」の作例です（架空のお店）。<br><a href="index.html">ほんまのAIサポートにもどる</a>
+    <div class="themes" role="group" aria-label="ページの色を試す">
+      <span>色を試す：</span>
+      <button type="button" data-theme="brown" aria-pressed="true"><i style="background:#4a3326"></i>木の茶色</button>
+      <button type="button" data-theme="green" aria-pressed="false"><i style="background:#2f5138"></i>森の緑</button>
+      <button type="button" data-theme="pink" aria-pressed="false"><i style="background:#a8566a"></i>桜色</button>
+    </div>
+  </div>
 
   <header class="hero">
     <img src="img/hero.jpg" alt="大きな窓から木もれ日の差す、落ちついた喫茶店の店内" width="1600" height="900" fetchpriority="high">
@@ -229,6 +251,28 @@
           toast.classList.add("show");
           clearTimeout(timer);
           timer = setTimeout(function () { toast.classList.remove("show"); }, 3200);
+        });
+      });
+    })();
+
+    // 上の帯の「色を試す」ボタンで、ページの色を切りかえる（選んだ色は、このブラウザに覚えておく）
+    (function () {
+      var root = document.documentElement, KEY = "komorebi-theme";
+      var buttons = document.querySelectorAll(".themes button");
+      function apply(name) {
+        if (name === "brown") root.removeAttribute("data-theme"); else root.setAttribute("data-theme", name);
+        buttons.forEach(function (b) { b.setAttribute("aria-pressed", String(b.getAttribute("data-theme") === name)); });
+      }
+      if (!root.hasAttribute("data-theme")) {
+        try { var saved = localStorage.getItem(KEY); if (saved) apply(saved); } catch (e) {}
+      } else {
+        apply(root.getAttribute("data-theme"));
+      }
+      buttons.forEach(function (b) {
+        b.addEventListener("click", function () {
+          var name = b.getAttribute("data-theme");
+          apply(name);
+          try { localStorage.setItem(KEY, name); } catch (e) {}
         });
       });
     })();
