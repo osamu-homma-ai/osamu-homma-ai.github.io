@@ -13,16 +13,19 @@
     :root {
       --bg:#f7f1e8; --paper:#fffdf9; --ink:#2f241c; --muted:#7a6858; --brown:#4a3326; --deep:#2a1d15;
       --cream:#fff4e3; --gold:#c89b5e; --leaf:#6b8f5a; --line:#e7dccb; --ov:20,13,8;
+      --accent:#c8873a; --wash:transparent;
       --mincho:"Shippori Mincho","Yu Mincho","YuMincho","Hiragino Mincho ProN",serif;
     }
-    /* 色のちがい（上の帯のボタンで切りかえる） */
+    /* 色のちがい（上の帯のボタンで切りかえる）。印刷しても差がわかるよう、はっきりした色にしている */
     :root[data-theme="green"] {
-      --bg:#eef3ec; --paper:#fbfdf9; --ink:#1f2a21; --muted:#5d6d5f; --brown:#2f5138; --deep:#1a2b1f;
-      --cream:#f2f8ee; --gold:#b5a35a; --leaf:#c27a3a; --line:#d6e2d3; --ov:10,24,14;
+      --bg:#e2efd9; --paper:#fbfef8; --ink:#17301f; --muted:#4f6b56; --brown:#1f6b3d; --deep:#12391f;
+      --cream:#effaea; --gold:#9fd27f; --leaf:#2f8f50; --line:#c9dfbf; --ov:12,52,26;
+      --accent:#2f9a55; --wash:rgba(30,140,70,.5);
     }
     :root[data-theme="pink"] {
-      --bg:#fbf1f1; --paper:#fffafa; --ink:#3a2a2d; --muted:#8a6f74; --brown:#a8566a; --deep:#4a2a33;
-      --cream:#fff3f5; --gold:#e3a3b0; --leaf:#8fae7a; --line:#f0dade; --ov:60,20,32;
+      --bg:#fde3ea; --paper:#fffafb; --ink:#3d1f29; --muted:#8a5a68; --brown:#c03d66; --deep:#5c1a31;
+      --cream:#fff0f4; --gold:#ffb3c7; --leaf:#d9577f; --line:#f6c9d6; --ov:110,25,55;
+      --accent:#e0507c; --wash:rgba(230,80,130,.5);
     }
     body, .card, .news li, table, .map, footer, .bar { transition:background-color .4s, color .4s, border-color .4s; }
     .themes { display:flex; justify-content:center; align-items:center; gap:6px; flex-wrap:wrap; margin-top:5px; }
@@ -133,6 +136,21 @@
     }
     @media (min-width: 721px) { body { padding-bottom:0; } .bar { display:none; } }
     @media (prefers-reduced-motion: reduce) { .hero img { animation:none; transform:none; } .card .ph img { transition:none; } }
+    /* ---- 色のちがいを、はっきり見せるための設定 ---- */
+    .hero img { z-index:0; }
+    .hero::before { content:""; position:absolute; inset:0; background:var(--wash); mix-blend-mode:color; z-index:1; pointer-events:none; }
+    .hero::after { z-index:2; }
+    .hero .in { z-index:3; }
+    .hero .btn:not(.line) { background:var(--accent); color:#fff; }
+    .label { color:var(--accent); font-weight:bold; }
+    h2 { color:var(--brown); }
+    .card { border-top:5px solid var(--accent); }
+    .card b span { color:var(--accent); }
+    .news time { background:var(--accent); }
+    .tag { background:var(--accent); }
+    .tag.morning { background:var(--brown); }
+    .points span { border-color:var(--accent); }
+    .about figure::before { border-color:var(--accent); }
   </style>
 </head>
 <body>
@@ -140,8 +158,8 @@
     <div class="themes" role="group" aria-label="ページの色を試す">
       <span>色を試す：</span>
       <button type="button" data-theme="brown" aria-pressed="true"><i style="background:#4a3326"></i>木の茶色</button>
-      <button type="button" data-theme="green" aria-pressed="false"><i style="background:#2f5138"></i>森の緑</button>
-      <button type="button" data-theme="pink" aria-pressed="false"><i style="background:#a8566a"></i>桜色</button>
+      <button type="button" data-theme="green" aria-pressed="false"><i style="background:#1f6b3d"></i>森の緑</button>
+      <button type="button" data-theme="pink" aria-pressed="false"><i style="background:#c03d66"></i>桜色</button>
     </div>
   </div>
 
