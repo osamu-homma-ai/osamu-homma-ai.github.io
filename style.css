@@ -1,0 +1,132 @@
+/* ほんまのAIサポート　営業用ページ（案A：明るく親しみやすい） */
+:root {
+  --bg: #fffaf2;
+  --surface: #ffffff;
+  --text: #3b2f2a;
+  --muted: #7a6a60;
+  --accent: #e8833a;
+  --accent-dark: #c9671f;
+  --soft: #fde9d7;
+  --green: #4a9a72;
+  --green-soft: #e3f4ea;
+  --line: #f0e2d2;
+  --r: 20px;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Hiragino Maru Gothic ProN", "BIZ UDGothic", "Yu Gothic UI", sans-serif;
+  line-height: 1.85;
+}
+img { max-width: 100%; display: block; }
+a { color: var(--accent-dark); }
+.wrap { max-width: 760px; margin: 0 auto; padding: 0 20px; }
+
+/* いちばん上 */
+.hero {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #ffe8cc 0%, #fff4e0 55%, #e8f6ef 100%);
+  padding: 56px 0 64px;
+}
+.hero .wrap { position: relative; z-index: 1; }
+.sun { position: absolute; right: -30px; top: -30px; width: 220px; height: 220px; opacity: 0.9; }
+.brand {
+  display: inline-block;
+  margin: 0 0 14px;
+  padding: 4px 14px;
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--accent-dark);
+  font-weight: bold;
+  font-size: 0.95rem;
+  border: 1px solid var(--line);
+  text-decoration: none;
+}
+h1 { font-size: clamp(1.6rem, 5.2vw, 2.4rem); line-height: 1.45; margin: 0 0 16px; }
+.sub { color: var(--muted); margin: 0 0 24px; }
+.btn {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 12px 28px;
+  border-radius: var(--r);
+}
+.btn:hover { background: var(--accent-dark); }
+.btn.line { background: var(--green); }
+.btn.ghost { background: transparent; color: var(--accent-dark); border: 2px solid var(--accent); }
+
+/* ページの中のメニュー */
+.nav { display: flex; gap: 8px; flex-wrap: wrap; margin: 18px 0 0; padding: 0; list-style: none; }
+.nav a {
+  display: inline-block; font-size: 0.88rem; text-decoration: none; color: var(--muted);
+  background: rgba(255, 255, 255, 0.7); border-radius: 999px; padding: 3px 12px;
+}
+
+section { padding: 40px 0 8px; scroll-margin-top: 12px; }
+h2 { font-size: 1.3rem; margin: 0 0 16px; padding-left: 12px; border-left: 5px solid var(--accent); }
+.lead { color: var(--muted); margin: -6px 0 16px; }
+
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 16px 18px; }
+.card b { color: var(--accent-dark); }
+.card p { margin: 6px 0 0; color: var(--muted); font-size: 0.95rem; }
+
+table { width: 100%; border-collapse: collapse; background: var(--surface); border-radius: var(--r); overflow: hidden; border: 1px solid var(--line); }
+th, td { padding: 12px 16px; border-bottom: 1px solid var(--line); text-align: left; font-weight: normal; vertical-align: top; }
+th small { display: block; color: var(--muted); font-size: 0.85rem; }
+td.price { text-align: right; white-space: nowrap; color: var(--accent-dark); font-weight: bold; }
+tr:last-child th, tr:last-child td { border-bottom: 0; }
+
+.steps { counter-reset: s; list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+.steps li { counter-increment: s; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 14px 18px 14px 60px; position: relative; }
+.steps li::before {
+  content: counter(s); position: absolute; left: 16px; top: 14px; width: 30px; height: 30px; border-radius: 50%;
+  background: var(--accent); color: #fff; font-weight: bold; display: flex; align-items: center; justify-content: center;
+}
+.steps b { display: block; }
+.steps span { color: var(--muted); font-size: 0.95rem; }
+
+.sample { display: flex; gap: 18px; align-items: center; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 18px; text-decoration: none; color: inherit; }
+.sample:hover { border-color: var(--accent); }
+.thumb { flex: 0 0 140px; height: 140px; border-radius: 16px; background: #5a3e2b; color: #fff4e3; display: flex; flex-direction: column; align-items: center; justify-content: center; font-weight: bold; text-align: center; line-height: 1.4; }
+.thumb small { font-weight: normal; font-size: 0.75rem; opacity: 0.8; }
+.sample p { margin: 4px 0 0; color: var(--muted); font-size: 0.95rem; }
+.sample .more { color: var(--accent-dark); font-weight: bold; }
+
+.promise { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+.promise li { background: var(--green-soft); border-radius: 14px; padding: 10px 16px; }
+
+.faq dt { font-weight: bold; margin-top: 14px; }
+.faq dt::before { content: "Q. "; color: var(--accent-dark); }
+.faq dd { margin: 4px 0 0; color: var(--muted); }
+
+.profile { display: flex; gap: 18px; align-items: flex-start; }
+.avatar { flex: 0 0 72px; height: 72px; border-radius: 50%; background: var(--soft); color: var(--accent-dark); display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.4rem; }
+.profile p { margin: 0 0 8px; }
+
+.contact { list-style: none; padding: 0; margin: 0 0 18px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); }
+.contact li { display: flex; gap: 16px; padding: 14px 18px; border-bottom: 1px solid var(--line); align-items: center; flex-wrap: wrap; }
+.contact li:last-child { border-bottom: 0; }
+.contact span { flex: 0 0 80px; color: var(--muted); }
+.contact a { font-weight: bold; text-decoration: none; }
+.cta { display: flex; gap: 10px; flex-wrap: wrap; }
+.btn.line:hover { background: #3c8460; }
+.line-box { display: flex; gap: 18px; align-items: center; background: var(--green-soft); border-radius: var(--r); padding: 16px 18px; margin: 0 0 16px; }
+.line-box img { flex: 0 0 140px; border-radius: 10px; background: #fff; }
+.line-box p { margin: 4px 0 0; color: var(--muted); font-size: 0.95rem; }
+
+footer { text-align: center; color: var(--muted); font-size: 0.85rem; padding: 48px 0 40px; }
+
+@media (max-width: 480px) {
+  .sun { width: 130px; height: 130px; right: -36px; top: -36px; opacity: 0.55; }
+  .sample, .profile { flex-direction: column; align-items: flex-start; }
+  .thumb { width: 100%; flex-basis: 110px; }
+  .contact span { flex-basis: 64px; }
+  .line-box { flex-direction: column; align-items: flex-start; }
+}
