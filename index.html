@@ -5,6 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>ほんまのAIサポート｜ホームページとSNSの「ちょっと困った」を、AIで</title>
   <meta name="description" content="お店・教室の方の、ホームページの更新やSNSの投稿を、AIを使ってお手伝いします。最初のスマホ診断は無料です。">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ほんまのAIサポート">
+  <meta property="og:title" content="ほんまのAIサポート｜ホームページとSNSの「ちょっと困った」を、AIで">
+  <meta property="og:description" content="お店・教室の方の、ホームページの更新やSNSの投稿を、AIを使ってお手伝いします。最初のスマホ診断は無料です。">
+  <meta property="og:url" content="https://osamu-homma-ai.github.io/">
+  <meta property="og:image" content="https://osamu-homma-ai.github.io/img/ogp.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="ja_JP">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -145,9 +155,26 @@
         <a class="btn" href="tel:08040057872">電話する</a>
         <a class="btn ghost" href="mailto:osamu.homma@gmail.com?subject=%E7%84%A1%E6%96%99%E8%A8%BA%E6%96%AD%E3%81%AE%E3%81%94%E7%9B%B8%E8%AB%87">メールで相談する</a>
       </div>
+      <div class="share">
+        <p>お知り合いのお店や教室に、このページを紹介していただけるとうれしいです。</p>
+        <div class="share-btns">
+          <a class="sbtn line" href="https://social-plugins.line.me/lineit/share?url=https%3A%2F%2Fosamu-homma-ai.github.io%2F" target="_blank" rel="noopener">LINEで送る</a>
+          <a class="sbtn x" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fosamu-homma-ai.github.io%2F&amp;text=%E3%81%BB%E3%82%93%E3%81%BE%E3%81%AEAI%E3%82%B5%E3%83%9D%E3%83%BC%E3%83%88%EF%BD%9C%E3%83%9B%E3%83%BC%E3%83%A0%E3%83%9A%E3%83%BC%E3%82%B8%E3%81%A8SNS%E3%81%AE%E3%80%8C%E3%81%A1%E3%82%87%E3%81%A3%E3%81%A8%E5%9B%B0%E3%81%A3%E3%81%9F%E3%80%8D%E3%82%92%E3%80%81AI%E3%81%A7" target="_blank" rel="noopener">X（旧Twitter）でシェア</a>
+          <button type="button" class="sbtn copy" id="copy-url">URLをコピー</button>
+        </div>
+      </div>
     </section>
   </main>
 
   <footer>ほんまのAIサポート　本間 統</footer>
+  <script>
+    // 「URLをコピー」ボタン：このページのアドレスをコピーする
+    document.getElementById("copy-url").addEventListener("click", function () {
+      var b = this, url = "https://osamu-homma-ai.github.io/";
+      function done() { b.textContent = "コピーしました"; setTimeout(function () { b.textContent = "URLをコピー"; }, 1800); }
+      if (navigator.clipboard) { navigator.clipboard.writeText(url).then(done, function () { prompt("このアドレスをコピーしてください", url); }); }
+      else { prompt("このアドレスをコピーしてください", url); }
+    });
+  </script>
 </body>
 </html>
