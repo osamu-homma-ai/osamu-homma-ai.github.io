@@ -46,7 +46,11 @@ a { color: var(--accent-dark); }
   border: 1px solid var(--line);
   text-decoration: none;
 }
-h1 { font-size: clamp(1.6rem, 5.2vw, 2.4rem); line-height: 1.45; margin: 0 0 16px; }
+h1 { font-size: clamp(1.2rem, 6.8vw, 2.4rem); line-height: 1.45; margin: 0 0 16px; }
+/* 見出しを言葉の切れ目で改行する（「困っ／た」のように切れないように） */
+h1 .nw { display: inline-block; max-width: 100%; }
+/* 長い英数字（メールアドレスなど）が画面からはみ出さないように */
+body { overflow-wrap: anywhere; }
 .sub { color: var(--muted); margin: 0 0 24px; }
 .btn {
   display: inline-block;
@@ -136,6 +140,27 @@ footer { text-align: center; color: var(--muted); font-size: 0.85rem; padding: 4
   .thumb { width: 100%; flex-basis: 110px; }
   .contact span { flex-basis: 64px; }
   .line-box { flex-direction: column; align-items: flex-start; }
+}
+
+/* スマホ（Android の「文字サイズ大」「表示サイズ大」でも崩れないように） */
+@media (max-width: 600px) {
+  .wrap { padding: 0 16px; }
+  .hero { padding: 40px 0 44px; }
+  .sun { width: 120px; height: 120px; right: -40px; top: -40px; opacity: 0.5; }
+  /* ボタンは横いっぱい・一つずつ */
+  .hero .btn, .cta .btn { display: block; text-align: center; margin: 0 0 10px; padding: 12px 16px; }
+  .cta { display: block; }
+  /* メニューと料金の表：名前と説明を上に、料金をその下に */
+  table, tbody, tr, th, td { display: block; width: 100%; }
+  tr { padding: 12px 16px; border-bottom: 1px solid var(--line); }
+  tr:last-child { border-bottom: 0; }
+  th, td { padding: 0; border-bottom: 0; }
+  td.price { text-align: left; margin-top: 4px; white-space: normal; }
+  .steps li { padding: 12px 14px 12px 54px; }
+  .steps li::before { left: 12px; top: 12px; }
+  .contact li { padding: 12px 14px; gap: 4px 12px; }
+  .contact span { flex-basis: 100%; font-size: 0.85rem; }
+  .line-box img { flex-basis: auto; width: 120px; height: 120px; }
 }
 
 /* 紹介ボタン（LINE・URLのコピー） */
